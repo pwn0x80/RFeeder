@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feedservice-api
+  namespace: feedservice
+  labels:
+   app: feedservice
+   tier: backend
+   env: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: feedservice
+      tier: backend
+      env: dev
+
+  template:
+    metadata:
+      labels:
+        app: feedservice
+        tier: backend
+        env: dev
+    spec:
+      containers:
+      - name: feedservice
+        image: feedservice
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:postgresql://feedservice-db-svc:5432/mydb
+          - name: SPRING_DATASOURCE_USERNAME
+            value: myuser
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: mypassword

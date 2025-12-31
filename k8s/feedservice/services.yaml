@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: feedservices-api-svc
+  namespace: feedservice
+  labels:
+    app: feedservice
+    tier: backend
+    env: dev
+spec:
+  selector:
+    app: feedservice
+    tier: backend
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: feedservice-db-svc
+  namespace: feedservice
+spec:
+  clusterIP: None
+  selector:
+    app: feedservice-db
+    tier: database
+    env: dev
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
