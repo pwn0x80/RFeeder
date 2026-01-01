@@ -26,7 +26,7 @@ public class RomeFeedParserAdapter
                     .build(new XmlReader(
                             rssUrlParse));
 
-            // return new Feed();
+          
 
             List<ParsedFeedItem> parsedFeedItemBuilder = syndFeed
                     .getEntries()

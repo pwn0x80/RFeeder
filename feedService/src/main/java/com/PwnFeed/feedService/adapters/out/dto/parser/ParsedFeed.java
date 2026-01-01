@@ -9,11 +9,11 @@ import lombok.Builder;
 
 @Builder
 public record ParsedFeed(
-        List<ParsedFeedItem> parsedFeedItem,
-        RssUrl rssUrl, String link,String title, String description,
-        String lang,
-        SyndImage image, String sourceName, String sourceHomepage,
-        String eTag, String lastModified, String lastfetechedAt, String status,
-        String createdAt, String createdBy, String createdByUserId,
-        Integer followCount) {
+                List<ParsedFeedItem> parsedFeedItem,
+                RssUrl rssUrl, String link, String title, String description,
+                String lang,
+                SyndImage image, String sourceName, String sourceHomepage,
+                String eTag, String lastModified, String lastfetechedAt, String status,
+                String createdAt, String createdBy, String createdByUserId,
+                Integer followCount) {
 }
