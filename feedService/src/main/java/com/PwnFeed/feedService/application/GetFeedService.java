@@ -1,15 +1,12 @@
 package com.PwnFeed.feedService.application;
 
 import com.PwnFeed.feedService.adapters.out.dto.parser.ParsedFeed;
-import com.PwnFeed.feedService.adapters.out.dto.parser.ParsedFeedItem;
 import com.PwnFeed.feedService.adapters.out.http.HttpHelper;
 import com.PwnFeed.feedService.adapters.out.rss.RssFeedParserFacade;
-import com.PwnFeed.feedService.domain.model.feed.Feed;
-import com.PwnFeed.feedService.domain.model.feed.FeedItem;
+import com.PwnFeed.feedService.application.mapper.FeedMapper;
+import com.PwnFeed.feedService.application.mapper.FeedMappingResult;
 import com.PwnFeed.feedService.domain.model.vo.RssUrl;
 import com.PwnFeed.feedService.domain.ports.in.GetFeedPort;
-
-import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -18,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class GetFeedService
         implements GetFeedPort {
     private RssFeedParserFacade parserFacade;
-
+    private FeedMapper feedMapper;
     public GetFeedService(
-            RssFeedParserFacade parser) {
+            RssFeedParserFacade parser,
+        FeedMapper feedMapper) {
         this.parserFacade = parser;
+        this.feedMapper = feedMapper;
     }
 
     @Override
@@ -34,19 +33,9 @@ public class GetFeedService
             ParsedFeed feedParsePort = parserFacade
                     .parseFacade(mediaType)
                     .parse(rssUrl);
+                    
 
-            List<FeedItem> feedItem = feedParsePort
-                    .parsedFeedItem()
-                    .stream()
-                    .map((ParsedFeedItem entity) -> {
-                        return FeedItem.builder()
-                                .author(entity.author())
-                                .link(entity.link())
-                                .title(entity.title())
-                                .uri(entity.uri())
-                                .build();
-                    })
-                    .toList();
+            FeedMappingResult feedItem = feedMapper.toDomain(feedParsePort);
             System.out.println(feedItem);
 
             // Feed.builder()

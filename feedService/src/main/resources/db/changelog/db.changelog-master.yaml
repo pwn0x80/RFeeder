@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/V1/001-create-rss-feeds-table.sql
+  - include:
+      file: db/changelog/changes/V1/002-create-rss-feed-item-table.sql
