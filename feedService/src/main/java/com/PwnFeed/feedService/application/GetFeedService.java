@@ -2,6 +2,7 @@ package com.PwnFeed.feedService.application;
 
 import com.PwnFeed.feedService.adapters.out.dto.parser.ParsedFeed;
 import com.PwnFeed.feedService.adapters.out.http.HttpHelper;
+import com.PwnFeed.feedService.adapters.out.persistence.JpaFeedRepositoryAdapter;
 import com.PwnFeed.feedService.adapters.out.rss.RssFeedParserFacade;
 import com.PwnFeed.feedService.application.mapper.FeedMapper;
 import com.PwnFeed.feedService.application.mapper.FeedMappingResult;
@@ -16,11 +17,15 @@ public class GetFeedService
         implements GetFeedPort {
     private RssFeedParserFacade parserFacade;
     private FeedMapper feedMapper;
+    private JpaFeedRepositoryAdapter jpaFeedRepositoryAdapter;
+
     public GetFeedService(
             RssFeedParserFacade parser,
-        FeedMapper feedMapper) {
+            FeedMapper feedMapper,
+            JpaFeedRepositoryAdapter jpaFeedRepositoryAdapter) {
         this.parserFacade = parser;
         this.feedMapper = feedMapper;
+        this.jpaFeedRepositoryAdapter = jpaFeedRepositoryAdapter;
     }
 
     @Override
@@ -31,16 +36,18 @@ public class GetFeedService
 
         try {
             ParsedFeed feedParsePort = parserFacade
-                    .parseFacade(mediaType)
+                    .parseFacade(
+                            mediaType)
                     .parse(rssUrl);
-                    
 
-            FeedMappingResult feedItem = feedMapper.toDomain(feedParsePort);
-            System.out.println(feedItem);
+            FeedMappingResult feedItem = feedMapper
+                    .toDomain(
+                            feedParsePort);
+                            System.out.println(feedItem);
+            
+                    jpaFeedRepositoryAdapter.save(feedItem);
 
-            // Feed.builder()
-            // .fee
-
+  
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -7,9 +7,8 @@ import com.PwnFeed.feedService.adapters.out.persistence.entity.FeedEntity;
 
 import java.util.Optional;
 
-// @Repository
-// public interface JpaFeedRepository
-//         extends JpaRepository<FeedEntity, Long> {
+@Repository
+public interface JpaFeedRepository extends JpaRepository<FeedEntity, Long> {
 
-//     Optional<FeedEntity> findByUrl(String url);
-// }
+    //Optional<FeedEntity> findByUrl(String url);
+}

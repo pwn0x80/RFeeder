@@ -2,7 +2,7 @@
 --changeset aditya:001
 
 create table feed(
-    id bigserial,
+    id bigserial PRIMARY KEY,
     rss_url varchar(255),
     link varchar(255),
     title varchar(255),
@@ -18,8 +18,11 @@ create table feed(
     createdAt timestamp,
     createdBy varchar(255),
     createdBy_user_id varchar(255),
-    follow_count bigint
+    follow_count bigint,
+    feed_item_id bigint,
+    foreign key (feed_item_id)
+    references feed_item(id)
 
 );
 
---rollback DROP TABLE feed
+--rollback DROP TABLE feed;

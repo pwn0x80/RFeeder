@@ -2,7 +2,7 @@
 --changeset aditya:002
 
 create table feed_item(
-    feed_id bigserial,
+    id bigserial PRIMARY key, 
     guid bigserial,
     title varchar(255),
     link varchar(255),
@@ -16,4 +16,4 @@ create table feed_item(
     downvote bigint
 );
 
---rollback DROP TABLE feed_item
+--rollback DROP TABLE feed_item;

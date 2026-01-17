@@ -36,6 +36,7 @@ public class RomeFeedParserAdapter
                             .author(entry.getAuthor())
                             .link(entry.getLink())
                             .title(entry.getTitle())
+                            .description(entry.getDescription().getValue())
                             .uri(entry.getUri())
                             .build())
                     .toList();

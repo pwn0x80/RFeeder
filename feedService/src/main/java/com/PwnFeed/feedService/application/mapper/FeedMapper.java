@@ -38,6 +38,7 @@ public class FeedMapper {
                 .feed(feed)        
                 .author(item.author())
                 .title(item.title())
+                .description(item.description())
                 .link(item.link())
                 .uri(item.uri())
                 .build();

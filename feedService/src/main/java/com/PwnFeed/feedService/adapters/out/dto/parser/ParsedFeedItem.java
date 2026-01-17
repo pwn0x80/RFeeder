@@ -1,6 +1,8 @@
 package com.PwnFeed.feedService.adapters.out.dto.parser;
+import com.PwnFeed.feedService.adapters.out.persistence.converter.SyndContentConverter;
 import com.rometools.rome.feed.rss.Content;
 
+import jakarta.persistence.Convert;
 import lombok.Builder;
 
 @Builder

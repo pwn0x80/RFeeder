@@ -3,8 +3,11 @@ package com.PwnFeed.feedService.domain.model.feed;
 import com.rometools.rome.feed.rss.Content;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Builder
+
 public record FeedItem(
                 Feed feed,
                 String guid,

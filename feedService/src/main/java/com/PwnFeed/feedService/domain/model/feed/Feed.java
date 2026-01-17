@@ -8,7 +8,8 @@ import lombok.Builder;
 @Builder
 public record Feed(String feedId,
 
-        RssUrl rssUrl, String link,
+        RssUrl rssUrl,
+         String link,
         String title,
         String description,
         String lang,

@@ -18,9 +18,10 @@ public class FeedController {
         this.getFeedPort = getFeedPort;
     }
 
-    @PostMapping("/feeds")
+    @PostMapping("/a")
     public FeedResponseDto getFeed(@RequestBody GetFeedRequestDto dtoRssUrl)
             throws SQLException {
+        System.out.println("hioiiiiiiiiiiii");
         RssUrl rssUrl = new RssUrl(dtoRssUrl.rssUrl()); // v0
         getFeedPort.getFeed(rssUrl);
         // return new FeedResponseDto(feed.getTitle());
