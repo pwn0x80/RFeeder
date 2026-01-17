@@ -30,8 +30,22 @@ spec:
           - containerPort: 8080
         env:
           - name: SPRING_DATASOURCE_URL
-            value: jdbc:postgresql://feedservice-db-svc:5432/mydb
+            value: jdbc:h2:mem:feeddb
           - name: SPRING_DATASOURCE_USERNAME
-            value: myuser
+            value: sa
           - name: SPRING_DATASOURCE_PASSWORD
-            value: mypassword
+            value: ""
+    # spec:
+    #   containers:
+    #   - name: feedservice
+    #     image: feedservice
+    #     imagePullPolicy: IfNotPresent
+    #     ports:
+    #       - containerPort: 8080
+    #     env:
+    #       - name: SPRING_DATASOURCE_URL
+    #         value: jdbc:postgresql://feedservice-db-svc:5432/mydb
+    #       - name: SPRING_DATASOURCE_USERNAME
+    #         value: myuser
+    #       - name: SPRING_DATASOURCE_PASSWORD
+    #         value: mypassword
